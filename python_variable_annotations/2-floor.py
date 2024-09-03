@@ -3,9 +3,6 @@
 """
 
 
-import math
-
-
 def floor(n: float) -> int:
     """ Return the floor of float """
-    return math.floar(n)
+    return int(n) if n >= 0 else int(n) - 1
