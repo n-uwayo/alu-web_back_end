@@ -5,6 +5,9 @@ Async Comprehensions.
 
 import asyncio
 from typing import List
+import sys
+sys.path.append('.')  # Add the current directory to the module search path
+
 from basic_async_syntax import wait_random  # Corrected import
 
 async def wait_n(n: int, max_delay: int) -> List[float]:
