@@ -3,8 +3,9 @@ export default function taskBlock(trueOrFalse) {
   const task2 = true;
 
   if (trueOrFalse) {
-    let task = true; // `let` makes this block-scoped
-    let task2 = false; // `let` makes this block-scoped
+    const innerTask = true; // Renaming to avoid conflicting with outer scope
+    const innerTask2 = false; // Renaming to avoid conflicting with outer scope
+    // innerTask and innerTask2 are not used further
   }
 
   return [task, task2];
