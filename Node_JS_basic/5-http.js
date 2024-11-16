@@ -21,7 +21,7 @@ const app = http.createServer(async (req, res) => {
     res.write('This is the list of our students\n');
 
     try {
-      const studentInfo = await getStudentData(DATABASE); // Modified to return properly formatted data
+      const studentInfo = await getStudentData(DATABASE);
       res.end(studentInfo);
     } catch (error) {
       res.end(error.message);
@@ -34,21 +34,16 @@ const app = http.createServer(async (req, res) => {
   res.end('Not Found');
 });
 
+async function getStudentData(path) {
+  return countStudents(path)
+    .then((students) => students.join('\n'))
+    .catch((error) => {
+      throw error;
+    });
+}
+
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
 
 module.exports = app;
-
-// Helper function to fetch and format student data
-async function getStudentData(path) {
-  const countStudents = require('./3-read_file_async');
-  const result = [];
-  await countStudents(path)
-    .then((students) => result.push(...students))
-    .catch((error) => {
-      throw error;
-    });
-
-  return result.join('\n');
-}
